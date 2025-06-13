@@ -4,18 +4,19 @@ import React from 'react'
 
 const Users = () => {
     const query = useQueryClient()
-   const users =  query.getQueryData("users")
-   console.log('heyy=='+users);
+   const users =  query.getQueryData(["users"])
+    
    
   return (
     <div>
       <h1>Updated users</h1>
-      {
-        users && users.map((user)=>{
-            <p key={users.id}>{user?.name}</p>
-        })
-      }
-    </div>
+      
+       {users?.length > 0 ? (
+    users.map((user) => <p key={user.id}>{user.name}</p>)
+  ) : (
+    <p>No users found</p>
+)}
+   </div>
   )
 }
 
